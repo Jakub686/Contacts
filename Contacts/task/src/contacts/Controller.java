@@ -66,14 +66,14 @@ public class Controller {
 
         new View().showEnterTheNumber();
         String number = scanner.nextLine();
+        //TODO if number is correct
+        String numberValidated = numberValidator(number);
 
-        Contact contact = new Contact.Builder()
-                .name(name)
-                .surname(surname)
-                .number(number)
-                .build();
+
+        Contact contact = setContact(name, surname, numberValidated);
 
         model.add(contact);
+
         new View().showTheRecordAdded();
     }
 
@@ -85,49 +85,62 @@ public class Controller {
         int record = scanner.nextInt()-1;
         new View().showSelectAField();
         String field = scannerString.nextLine();
-        //TODO need setter, przy wzorcu builder nie ma setterow przez co musze tworzyc trzy razy obiekt, zamiast utworzyc wczesniej obiek i pozniej uzyc setera zeby ustawic interesujace mnie pole
 
         switch (field){
             case "name":{
                 new View().showEntertheNameOfThePerson();
                 String name = scannerString.nextLine();
-                Contact tempContact = new Contact.Builder()
-                        .name(name)
-                        .surname(model.getSurname(record))
-                        .number(model.getNumber(record))
-                        .build();
-                model.set(record,tempContact);
+                model.set(record, setContact(name, model.getSurname(record), model.getNumber(record)));
+                new View().showTheRecordUpdated();
                 break;
             }
             case "surname":{
                 new View().showEnterTheSurnameOfThePerson();
                 String surname = scannerString.nextLine();
-                Contact tempContact = new Contact.Builder()
-                        .name(model.getName(record))
-                        .surname(surname)
-                        .number(model.getNumber(record))
-                        .build();
+                Contact tempContact = setContact(model.getName(record), surname, model.getNumber(record));
                 model.set(record,tempContact);
+                new View().showTheRecordUpdated();
                 break;
             }
             case "number":{
                 new View().showEnterNumber();
                 String number = scannerString.nextLine();
-                Contact tempContact = new Contact.Builder()
-                        .name(model.getName(record))
-                        .surname(model.getSurname(record))
-                        .number(number)
-                        .build();
+                String numberValidated = numberValidator(number);
+
+                Contact tempContact = setContact(model.getName(record), model.getSurname(record), numberValidated);
                 model.set(record,tempContact);
+                new View().showTheRecordUpdated();
                 break;
             }
         }
+    }
 
+    private Contact setContact(String name, String surname, String number) {
+        return new Contact.Builder()
+                .name(name)
+                .surname(surname)
+                .number(number)
+                .build();
     }
 
     public void remove(int index, Model model) {
         model.remove(index-1);
         new View().showTheRecordRemoved();
+    }
+    
+    public String numberValidator(String num){
+        String result = "";
+        boolean numberCheck = (num.matches("^(\\+\\d{1}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{3}[- .]?\\w{4}$")
+                |num.matches("(.\\([a-zA-Z]{7}\\))")|num.matches("(.\\([a-zA-Z]{7}\\))")|num.matches("(.\\([a-zA-Z]{5}\\))") | num.matches("^([0-9]{3}) ([0-9]{2})-([a-zA-Z]{4})-([0-9]{2})")|num.matches("^([0-9]{3}) \\(\\d{2}\\)-([0-9]{2})-([0-9]{2})")|num.matches("^([0-9]{3}) ([0-9]{2})-([a-zA-Z]{2})-([0-9]{2})")|num.matches("^\\+\\d{1} \\d{2}$")|num.matches("^\\d{1}$")|num.matches("^\\d{3}$")|num.matches("\\(\\d{3}\\)")|num.matches("^([0-9]{3}) ([a-zA-Z]{3})$")|num.matches("^([0-9]{3})-\\(\\d{3}\\)$")|num.matches("^\\(\\d{3}\\) ([0-9]{3})$")|num.matches("^\\(\\d{3}\\) ([0-9]{3})-([0-9]{3})$")|num.matches("^\\(\\d{3}\\)-([0-9]{3}) ([0-9]{3})$")|num.matches("^([0-9]{3})-\\(\\d{3}\\)$")|num.matches("^([0-9]{3}) \\(\\d{3}\\) ([0-9]{3})$")|num.matches("^([0-9]{3})-\\(\\d{3}\\)-([0-9]{3})$")|num.matches("^([0-9]{3})-([a-zA-Z]{3})$")|num.matches("^([0-9]{3}) ([0-9]{3}) ([a-zA-Z]{3})$")|num.matches("^([0-9]{3}) ([0-9]{3})-([0-9]{3})$")|num.matches("^([0-9]{3})-([0-9]{3})-([a-zA-Z]{3})$")|num.matches("^([0-9]{3})-([0-9]{3}) ([0-9]{3})$"));
+        if(numberCheck==true){
+            result = num;
+        }else {
+            new View().showWrongNumberFormat();
+            result = "[no number]";
+        }
+
+        
+        return result;
     }
 
 

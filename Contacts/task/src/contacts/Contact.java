@@ -1,5 +1,5 @@
 package contacts;
-
+//@Builder
 public class Contact {
     private String name;
     private String surname;

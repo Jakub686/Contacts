@@ -7,27 +7,33 @@ public class Model {
 
     LinkedList<Contact> data = new LinkedList<>();
 
-    public void add(Contact contact){
+    public void add(Contact contact) {
         data.add(contact);
     }
-    public void set(int index,Contact contact){
-        data.set(index,contact);
+
+    public void set(int index, Contact contact) {
+        data.set(index, contact);
     }
-    public Contact get(int index){
+
+    public Contact get(int index) {
         return data.get(index);
     }
-    public void remove(int index){
+
+    public void remove(int index) {
         data.remove(index);
     }
-    public String getName(int index){
+
+    public String getName(int index) {
         Contact contact = data.get(index);
         return contact.getName();
     }
-    public String getSurname(int index){
+
+    public String getSurname(int index) {
         Contact contact = data.get(index);
         return contact.getSurname();
     }
-    public String getNumber(int index){
+
+    public String getNumber(int index) {
         Contact contact = data.get(index);
         return contact.getNumber();
     }

@@ -15,6 +15,10 @@ public class View {
     public void showEnterTheNumber() {
         System.out.println("Enter the number:");
     }
+    public void showWrongNumberFormat() {
+        System.out.println("Wrong number format!");
+    }
+
     public void showEnterNumber() {
         System.out.println("Enter number:");
     }
@@ -30,35 +34,44 @@ public class View {
     public void showAPhoneBookWithASingleRecordCreated() {
         System.out.println("A Phone Book with a single record created!");
     }
+
     public void showSelectARecord() {
         System.out.println("Select a record:");
     }
-    public void showSelectAField () {
+
+    public void showSelectAField() {
         System.out.println("Select a field (name, surname, number):");
     }
 
     public void showTheRecordAdded() {
         System.out.println("The record added.");
     }
+
     public void showTheRecordRemoved() {
         System.out.println("The record removed!");
     }
+    public void showTheRecordUpdated() {
+        System.out.println("The record updated");
+    }
+
     public void showList(Model model) {
-        for(int i = 0 ; i< model.data.size(); i++){
-            System.out.println(i+1+". " + model.getName(i)+" "+ model.getSurname(i)+ " " + model.getNumber(i));
+        for (int i = 0; i < model.data.size(); i++) {
+            System.out.println(i + 1 + ". " + model.getName(i) + " " + model.getSurname(i) + ", " + model.getNumber(i));
         }
     }
 
     public void showNoRecordsToEdit() {
         System.out.println("No records to edit!");
     }
+
     public void showNoRecordsToRemove() {
         System.out.println("No records to remove!");
     }
+
     public void showAmount(Model model) {
-        if(model.data.size()==0){
-                System.out.println("The Phone Book has 0 records.");
-        }else {
+        if (model.data.size() == 0) {
+            System.out.println("The Phone Book has 0 records.");
+        } else {
             System.out.println(model.data.size());
         }
 

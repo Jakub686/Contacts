@@ -1,2 +1,2 @@
 # Contacts
-OOP app - inheritance, encapsulation, downcasting   TODO abstract, polimorfizm
+OOP app - inheritance, encapsulation, builder pattern, regular expresion downcasting   TODO abstract, polimorfizm

@@ -8,7 +8,7 @@ public class Controller {
         boolean endCondition = true;
 
         while (endCondition) {
-            endCondition = actions(model,endCondition);
+            endCondition = actions(model, endCondition);
         }
     }
 
@@ -28,7 +28,7 @@ public class Controller {
                     new View().showList(model);
                     new View().showSelectARecord();
                     int index = scanner.nextInt();
-                    remove(index,model);
+                    remove(index, model);
                 }
                 break;
             }
@@ -44,8 +44,10 @@ public class Controller {
                 new View().showAmount(model);
                 break;
             }
-            case "list": {
-                new View().showList(model);
+            case "info": {
+
+                info(model);
+
                 break;
             }
             case "exit": { ///
@@ -58,21 +60,52 @@ public class Controller {
 
     public void add(Model model) {
         Scanner scanner = new Scanner(System.in);
-        new View().showEntertheNameOfThePerson();
-        String name = scanner.nextLine();
+        new View().showEnterTheTypePersonOrganization();
+        String input = scanner.nextLine();
 
-        new View().showEnterTheSurnameOfThePerson();
-        String surname = scanner.nextLine();
+        if (input.equals("person")) {
 
-        new View().showEnterTheNumber();
-        String number = scanner.nextLine();
-        //TODO if number is correct
-        String numberValidated = numberValidator(number);
+            new View().showEntertheNameOfThePerson();
+            String name = scanner.nextLine();
 
+            new View().showEnterTheSurnameOfThePerson();
+            String surname = scanner.nextLine();
 
-        Contact contact = setContact(name, surname, numberValidated);
+            new View().showEnterTheBirthDate();
+            String birthDate = scanner.nextLine();
+            if (birthDate.equals("")) {
+                new View().showBadBirthDate();
+            }
 
-        model.add(contact);
+            new View().showEnterTheGender();
+            String gender = scanner.nextLine();
+            if (!(gender.equals("M") | gender.equals("m") | gender.equals("F") | gender.equals("f"))) {
+                new View().showBadGender();
+            }
+
+            new View().showEnterTheNumber();
+            String number = scanner.nextLine();
+            String numberValidated = numberValidator(number);
+
+            Person person = setPerson(name, surname, birthDate, gender, numberValidated);
+            model.add(person);
+        }
+
+        if (input.equals("organization")) {
+
+            new View().showEnterTheOrganizationName();
+            String organizationName = scanner.nextLine();
+
+            new View().showEnterTheAddress();
+            String address = scanner.nextLine();
+
+            new View().showEnterTheNumber();
+            String number = scanner.nextLine();
+            String numberValidated = numberValidator(number);
+
+            Organization organization = setOrganization(numberValidated, organizationName, address);
+            model.add(organization);
+        }
 
         new View().showTheRecordAdded();
     }
@@ -82,64 +115,81 @@ public class Controller {
         Scanner scannerString = new Scanner(System.in);
         new View().showList(model);
         new View().showSelectARecord();
-        int record = scanner.nextInt()-1;
+        int record = scanner.nextInt() - 1;
         new View().showSelectAField();
         String field = scannerString.nextLine();
 
-        switch (field){
-            case "name":{
+        switch (field) {
+            case "name": {
                 new View().showEntertheNameOfThePerson();
                 String name = scannerString.nextLine();
-                model.set(record, setContact(name, model.getSurname(record), model.getNumber(record)));
+                //model.set(record, setContact(name, model.getSurname(record), model.getNumber(record)));
                 new View().showTheRecordUpdated();
                 break;
             }
-            case "surname":{
+            case "surname": {
                 new View().showEnterTheSurnameOfThePerson();
                 String surname = scannerString.nextLine();
-                Contact tempContact = setContact(model.getName(record), surname, model.getNumber(record));
-                model.set(record,tempContact);
+                //Person tempPerson = setContact(model.getName(record), surname, model.getNumber(record));
+                //model.set(record, tempPerson);
                 new View().showTheRecordUpdated();
                 break;
             }
-            case "number":{
+            case "number": {
                 new View().showEnterNumber();
                 String number = scannerString.nextLine();
                 String numberValidated = numberValidator(number);
 
-                Contact tempContact = setContact(model.getName(record), model.getSurname(record), numberValidated);
-                model.set(record,tempContact);
+                // Person tempPerson = setContact(model.getName(record), model.getSurname(record), numberValidated);
+                //model.set(record, tempPerson);
                 new View().showTheRecordUpdated();
                 break;
             }
         }
     }
 
-    private Contact setContact(String name, String surname, String number) {
-        return new Contact.Builder()
+    public void info(Model model) {
+        Scanner scanner = new Scanner(System.in);
+        new View().showList(model);
+        new View().showEnterIndexToShowInfo();
+        int index = scanner.nextInt() - 1;
+        new View().showContact(model, index);
+    }
+
+    private Person setPerson(String name, String surname, String birthDate, String gender, String number) {
+        return new Person.Builder()
                 .name(name)
                 .surname(surname)
+                .birthDate(birthDate)
+                .gender(gender)
                 .number(number)
                 .build();
     }
 
+    private Organization setOrganization(String number, String organizationName, String address) {
+        return new Organization.Builder()
+                .number(number)
+                .organizationName(organizationName)
+                .address(address)
+                .build();
+    }
+
     public void remove(int index, Model model) {
-        model.remove(index-1);
+        model.remove(index - 1);
         new View().showTheRecordRemoved();
     }
-    
-    public String numberValidator(String num){
+
+    public String numberValidator(String num) {
         String result = "";
-        boolean numberCheck = (num.matches("^(\\+\\d{1}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{3}[- .]?\\w{4}$")
-                |num.matches("(.\\([a-zA-Z]{7}\\))")|num.matches("(.\\([a-zA-Z]{7}\\))")|num.matches("(.\\([a-zA-Z]{5}\\))") | num.matches("^([0-9]{3}) ([0-9]{2})-([a-zA-Z]{4})-([0-9]{2})")|num.matches("^([0-9]{3}) \\(\\d{2}\\)-([0-9]{2})-([0-9]{2})")|num.matches("^([0-9]{3}) ([0-9]{2})-([a-zA-Z]{2})-([0-9]{2})")|num.matches("^\\+\\d{1} \\d{2}$")|num.matches("^\\d{1}$")|num.matches("^\\d{3}$")|num.matches("\\(\\d{3}\\)")|num.matches("^([0-9]{3}) ([a-zA-Z]{3})$")|num.matches("^([0-9]{3})-\\(\\d{3}\\)$")|num.matches("^\\(\\d{3}\\) ([0-9]{3})$")|num.matches("^\\(\\d{3}\\) ([0-9]{3})-([0-9]{3})$")|num.matches("^\\(\\d{3}\\)-([0-9]{3}) ([0-9]{3})$")|num.matches("^([0-9]{3})-\\(\\d{3}\\)$")|num.matches("^([0-9]{3}) \\(\\d{3}\\) ([0-9]{3})$")|num.matches("^([0-9]{3})-\\(\\d{3}\\)-([0-9]{3})$")|num.matches("^([0-9]{3})-([a-zA-Z]{3})$")|num.matches("^([0-9]{3}) ([0-9]{3}) ([a-zA-Z]{3})$")|num.matches("^([0-9]{3}) ([0-9]{3})-([0-9]{3})$")|num.matches("^([0-9]{3})-([0-9]{3})-([a-zA-Z]{3})$")|num.matches("^([0-9]{3})-([0-9]{3}) ([0-9]{3})$"));
-        if(numberCheck==true){
+        boolean numberCheck = (num.matches("^(\\+\\d{1}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{3}[- .]?\\w{4}$") | num.matches("(.\\([a-zA-Z]{7}\\))") | num.matches("(.\\([a-zA-Z]{7}\\))") | num.matches("(.\\([a-zA-Z]{5}\\))") | num.matches("^([0-9]{3}) ([0-9]{2})-([a-zA-Z]{4})-([0-9]{2})") | num.matches("^([0-9]{3}) \\(\\d{2}\\)-([0-9]{2})-([0-9]{2})") | num.matches("^([0-9]{3}) ([0-9]{2})-([a-zA-Z]{2})-([0-9]{2})") | num.matches("^\\+\\d{1} \\d{2}$") | num.matches("^\\d{1}$") | num.matches("^\\d{3}$") | num.matches("\\(\\d{3}\\)") | num.matches("^([0-9]{3}) ([a-zA-Z]{3})$") | num.matches("^([0-9]{3})-\\(\\d{3}\\)$") | num.matches("^\\(\\d{3}\\) ([0-9]{3})$") | num.matches("^\\(\\d{3}\\) ([0-9]{3})-([0-9]{3})$") | num.matches("^\\(\\d{3}\\)-([0-9]{3}) ([0-9]{3})$") | num.matches("^([0-9]{3})-\\(\\d{3}\\)$") | num.matches("^([0-9]{3}) \\(\\d{3}\\) ([0-9]{3})$") | num.matches("^([0-9]{3})-\\(\\d{3}\\)-([0-9]{3})$") | num.matches("^([0-9]{3})-([a-zA-Z]{3})$") | num.matches("^([0-9]{3}) ([0-9]{3}) ([a-zA-Z]{3})$") | num.matches("^([0-9]{3}) ([0-9]{3})-([0-9]{3})$") | num.matches("^([0-9]{3})-([0-9]{3})-([a-zA-Z]{3})$") | num.matches("^([0-9]{3})-([0-9]{3}) ([0-9]{3})$"));
+        if (numberCheck == true) {
             result = num;
-        }else {
+        } else {
             new View().showWrongNumberFormat();
             result = "[no number]";
         }
 
-        
+
         return result;
     }
 

@@ -1,60 +1,47 @@
 package contacts;
-//@Builder
+
 public class Contact {
-    private String name;
-    private String surname;
+
     private String number;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
 
     public String getNumber() {
         return number;
     }
 
-    private Contact(Builder builder){
-        this.name = builder.name;
-        this.surname = builder.surname;
+    protected Contact(Builder<?> builder) {
         this.number = builder.number;
-    }
-
-    public static class Builder{
-        private String name;
-        private String surname;
-        private String number;
-
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder surname(String surname) {
-            this.surname = surname;
-            return this;
-        }
-
-        public Builder number(String number) {
-            this.number = number;
-            return this;
-        }
-
-        public Contact build(){
-            return new Contact(this);
-        }
     }
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", number='" + number + '\'' +
-                '}';
+        return "number: " + this.number;
     }
+
+    public static Builder builder() {
+        return new Builder() {
+            @Override
+            public Builder getThis() {
+                return this;
+            }
+        };
+    }
+
+    public abstract static class Builder<T extends Builder<T>> {
+
+        private String number;
+
+
+        public abstract T getThis();
+
+        public T number(String number) {
+            this.number = number;
+            return this.getThis();
+        }
+
+
+        public Contact build() {
+            return new Contact(this);
+        }
+    }
+
 }

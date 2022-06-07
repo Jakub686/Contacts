@@ -7,14 +7,31 @@ public class View {
         System.out.println("Enter the name of the person:");
     }
 
+    public void showEnterTheOrganizationName() {
+        System.out.println("Enter the organization name:");
+    }
+
 
     public void showEnterTheSurnameOfThePerson() {
         System.out.println("Enter the surname of the person:");
     }
 
+    public void showEnterTheBirthDate() {
+        System.out.println("Enter the birth date:");
+    }
+
+    public void showEnterTheGender() {
+        System.out.println("Enter the gender (M, F):");
+    }
+
+    public void showEnterTheAddress() {
+        System.out.println("Enter the address:");
+    }
+
     public void showEnterTheNumber() {
         System.out.println("Enter the number:");
     }
+
     public void showWrongNumberFormat() {
         System.out.println("Wrong number format!");
     }
@@ -28,7 +45,7 @@ public class View {
     }
 
     public void showEnterAction() {
-        System.out.println("Enter action (add, remove, edit, count, list, exit):");
+        System.out.println("Enter action (add, remove, edit, count, info, exit):");
     }
 
     public void showAPhoneBookWithASingleRecordCreated() {
@@ -37,6 +54,14 @@ public class View {
 
     public void showSelectARecord() {
         System.out.println("Select a record:");
+    }
+
+    public void showBadGender() {
+        System.out.println("Bad gender!");
+    }
+
+    public void showBadBirthDate() {
+        System.out.println("Bad birth date!");
     }
 
     public void showSelectAField() {
@@ -50,14 +75,34 @@ public class View {
     public void showTheRecordRemoved() {
         System.out.println("The record removed!");
     }
+
     public void showTheRecordUpdated() {
         System.out.println("The record updated");
     }
 
     public void showList(Model model) {
         for (int i = 0; i < model.data.size(); i++) {
-            System.out.println(i + 1 + ". " + model.getName(i) + " " + model.getSurname(i) + ", " + model.getNumber(i));
+            System.out.println(i + 1 + ". " + model.getOnlyName(i));
         }
+    }
+    public void showContact(Model model, int index) {
+        if(model.data.get(index) instanceof Person) {
+
+            System.out.println(model.getContactInfo(index));
+        }
+        if(model.data.get(index) instanceof Organization) {
+
+            System.out.println(model.getContactInfo(index));
+        }
+
+    }
+
+    public void showEnterIndexToShowInfo() {
+        System.out.println("Enter index to show info:");
+    }
+
+    public void showEnterTheTypePersonOrganization() {
+        System.out.println("Enter the type (person, organization):");
     }
 
     public void showNoRecordsToEdit() {

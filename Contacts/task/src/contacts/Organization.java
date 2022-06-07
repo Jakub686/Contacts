@@ -13,16 +13,16 @@ public class Organization extends Contact {
 
     @Override
     public String toString() {
-        return super.toString() + ", organizationName: " + this.organizationName+ ", address: " + this.address;
+        return super.toString() + ", organizationName: " + this.organizationName + ", address: " + this.address;
     }
-    public String showName(){
+
+    public String showName() {
         return this.organizationName;
     }
 
     public String showInfo() {
-        return "Organization name: " + this.organizationName + "\nAddress: " + this.address  + "\nNumber: " + getNumber();
+        return "Organization name: " + this.organizationName + "\nAddress: " + this.address + "\nNumber: " + getNumber();
     }
-
 
 
     public static Builder builder() {
@@ -43,6 +43,7 @@ public class Organization extends Contact {
             this.organizationName = organizationName;
             return this;
         }
+
         public Builder address(String address) {
             this.address = address;
             return this;

@@ -27,7 +27,7 @@ public class Person extends Contact {
     }
 
     public String showInfo() {
-        return "Name: " + this.name + "\nSurname: " + this.surname + "\nBirth date: " + this.birthDate + "\nGender: " + this.gender + "\nNumber: " + getNumber();
+        return "Name: " + this.name + "\nSurname: " + this.surname + "\nBirth date: " + this.birthDate + "\nGender: " + this.gender + "\nNumber: " + getNumber()+ "\nTime created: " + getCreated()+ "\nTime last edit: " + getLastEdit();
     }
 
     public static Builder builder() {

@@ -50,18 +50,4 @@ public class Model {
         data.remove(index);
     }
 
-//    public String getName(int index) {
-//        Contact contact = data.get(index);
-//        return contact.getName();
-//    }
-//
-//    public String getSurname(int index) {
-//        Person person = data.get(index);
-//        return person.getSurname();
-//    }
-//
-//    public String getNumber(int index) {
-//        Person person = data.get(index);
-//        return person.getNumber();
-//    }
 }

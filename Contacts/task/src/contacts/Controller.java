@@ -1,5 +1,6 @@
 package contacts;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Controller {
@@ -87,7 +88,7 @@ public class Controller {
             String number = scanner.nextLine();
             String numberValidated = numberValidator(number);
 
-            Person person = setPerson(name, surname, birthDate, gender, numberValidated);
+            Person person = setPerson(name, surname, birthDate, gender, numberValidated, LocalDateTime.now(),null);
             model.add(person);
         }
 
@@ -156,13 +157,15 @@ public class Controller {
         new View().showContact(model, index);
     }
 
-    private Person setPerson(String name, String surname, String birthDate, String gender, String number) {
+    private Person setPerson(String name, String surname, String birthDate, String gender, String number, LocalDateTime created, LocalDateTime lastEdit) {
         return new Person.Builder()
                 .name(name)
                 .surname(surname)
                 .birthDate(birthDate)
                 .gender(gender)
                 .number(number)
+                .created(created)
+                .lastEdit(lastEdit)
                 .build();
     }
 

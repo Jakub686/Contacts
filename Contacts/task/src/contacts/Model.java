@@ -6,12 +6,19 @@ public class Model {
 
     LinkedList<Contact> data = new LinkedList<>();
 
+    public LinkedList<Contact> getData() {
+        return data;
+    }
+
     public void add(Contact contact) {
         data.add(contact);
     }
 
-    public void set(int index, Person person) {
+    public void setPerson(int index, Person person) {
         data.set(index, person);
+    }
+    public void setOrganization(int index, Organization organization) {
+        data.set(index, organization);
     }
 
     public Contact get(int index) {

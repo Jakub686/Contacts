@@ -21,7 +21,7 @@ public class Organization extends Contact {
     }
 
     public String showInfo() {
-        return "Organization name: " + this.organizationName + "\nAddress: " + this.address + "\nNumber: " + getNumber();
+        return "Organization name: " + this.organizationName + "\nAddress: " + this.address + "\nNumber: " + getNumber()+ "\nTime created: " + getCreated()+ "\nTime last edit: " + getLastEdit();
     }
 
 

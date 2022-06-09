@@ -5,7 +5,11 @@ public class PhoneValidator {
 
     public String numberValidator(String num) {
         String result = "";
-        boolean numberCheck = (num.matches("^(\\+\\d{1}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{3}[- .]?\\w{4}$") |
+        boolean numberCheck = (
+                num.matches("^(\\+\\d{1}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{3}[- .]?\\d{5}$")|
+                num.matches("^(\\+\\d{1}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{3}[- .]?\\w{4}$") |
+                num.matches("^\\(\\d{3}\\) ([0-9]{3}) ([0-9]{3})-([0-9]{3})$")|
+                num.matches("([0-9]{3}) ([0-9]{3}) ([0-9]{3})$") |
                 num.matches("(.\\([a-zA-Z]{7}\\))") |
                 num.matches("(.\\([a-zA-Z]{7}\\))") |
                 num.matches("(.\\([a-zA-Z]{5}\\))") |

@@ -15,6 +15,7 @@ public class Controller {
 
     private boolean actions(Model model, boolean endCondition) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println();
         new View().showEnterAction();
         String action = scanner.nextLine();
         switch (action) {
@@ -64,21 +65,27 @@ public class Controller {
         if (input.equals("person")) {
             new View().showEntertheNameOfThePerson();
             String name = scanner.nextLine();
+
             new View().showEnterTheSurnameOfThePerson();
             String surname = scanner.nextLine();
+
             new View().showEnterTheBirthDate();
             String birthDate = scanner.nextLine();
             if (birthDate.equals("")) {
                 new View().showBadBirthDate();
+                birthDate = "[no data]";
             }
             new View().showEnterTheGender();
             String gender = scanner.nextLine();
             if (!(gender.equals("M") | gender.equals("m") | gender.equals("F") | gender.equals("f"))) {
                 new View().showBadGender();
+                gender = "[no data]";
             }
+
             new View().showEnterTheNumber();
             String number = scanner.nextLine();
             String numberValidated = new PhoneValidator().numberValidator(number);
+
             Person person = setPerson(name, surname, birthDate, gender, numberValidated, LocalDateTime.now(), LocalDateTime.now());
             model.add(person);
         }

@@ -1,5 +1,6 @@
 package contacts;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Model {
@@ -12,6 +13,10 @@ public class Model {
 
     public void add(Contact contact) {
         data.add(contact);
+    }
+
+    public void set(int index,Contact contact){
+        data.set(index,contact);
     }
 
     public void setPerson(int index, Person person) {
@@ -33,9 +38,45 @@ public class Model {
         }
         if(data.get(index) instanceof Organization){
             Organization organization = (Organization) data.get(index);
-            result = organization.showName();
+            result = organization.showOrganizationName();
         }
         return result;
+    }
+    public String getOnlySurname(int index) {
+            Person person = (Person) data.get(index);
+        return person.showSurname();
+    }
+    public String getBirthDate(int index) {
+        Person person = (Person) data.get(index);
+        return person.showBirthDate();
+    }
+    public String getGender(int index) {
+        Person person = (Person) data.get(index);
+        return person.showGender();
+    }
+    public LocalDateTime getCreatedPerson(int index) {
+        Person person = (Person) data.get(index);
+        return person.showCreated();
+    }
+    public String getNumberPerson(int index) {
+        Person person = (Person) data.get(index);
+        return person.showNumber();
+    }
+    public String getNumberOrgnization(int index) {
+        Organization organization = (Organization) data.get(index);
+        return organization.showNumber();
+    }
+    public String getOrganizationName(int index) {
+        Organization organization = (Organization) data.get(index);
+        return organization.showOrganizationName();
+    }
+    public LocalDateTime getCreatedOrganization(int index) {
+        Organization organization = (Organization) data.get(index);
+        return organization.showCreated();
+    }
+    public String getAddress(int index) {
+        Organization organization = (Organization) data.get(index);
+        return organization.showAddress();
     }
 
     public String getContactInfo(int index) {

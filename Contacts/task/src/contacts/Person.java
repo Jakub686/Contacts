@@ -1,5 +1,7 @@
 package contacts;
 
+import java.time.LocalDateTime;
+
 //@Builder
 public class Person extends Contact {
 
@@ -40,7 +42,22 @@ public class Person extends Contact {
 
 
     public String showName() {
-        return this.name + " " + this.surname;
+        return this.name;
+    }
+    public String showSurname() {
+        return this.surname;
+    }
+    public String showBirthDate() {
+        return this.birthDate;
+    }
+    public String showGender() {
+        return this.gender;
+    }
+    public LocalDateTime showCreated() {
+        return getCreated();
+    }
+    public String showNumber() {
+        return getNumber();
     }
 
     public String showInfo() {

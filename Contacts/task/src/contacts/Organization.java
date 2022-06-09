@@ -1,5 +1,7 @@
 package contacts;
 
+import java.time.LocalDateTime;
+
 public class Organization extends Contact {
 
     private String organizationName;
@@ -16,8 +18,17 @@ public class Organization extends Contact {
         return super.toString() + ", organizationName: " + this.organizationName + ", address: " + this.address;
     }
 
-    public String showName() {
+    public String showOrganizationName() {
         return this.organizationName;
+    }
+    public String showAddress() {
+        return this.address;
+    }
+    public String showNumber() {
+        return getNumber();
+    }
+    public LocalDateTime showCreated() {
+        return getCreated();
     }
 
     public String showInfo() {

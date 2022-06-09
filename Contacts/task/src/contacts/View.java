@@ -11,7 +11,6 @@ public class View {
         System.out.println("Enter the organization name:");
     }
 
-
     public void showEnterTheSurnameOfThePerson() {
         System.out.println("Enter the surname of the person:");
     }
@@ -64,8 +63,11 @@ public class View {
         System.out.println("Bad birth date!");
     }
 
-    public void showSelectAField() {
-        System.out.println("Select a field (name, surname, number):");
+    public void showSelectAFieldPerson() {
+        System.out.println("Select a field (name, surname, birth, gender, number):");
+    }
+    public void showSelectAFieldOrganization() {
+        System.out.println("Select a field (organization name, address, number):");
     }
 
     public void showTheRecordAdded() {

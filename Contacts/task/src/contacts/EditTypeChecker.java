@@ -1,19 +1,19 @@
 package contacts;
 
-import java.util.LinkedList;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class EditTypeChecker {
 
-    LinkedList<Contact> data = new Model().getData();
+
     Scanner scannerString = new Scanner(System.in);
 ;
 
     public void editContact(Model model, int index){
 
-        if(data.get(index) instanceof Person) {
-            Person person = (Person) data.get(index);
-            new View().showSelectAField();
+        if(model.data.get(index) instanceof Person) {
+            Person person = (Person) model.data.get(index);
+            new View().showSelectAFieldPerson();
             String field = scannerString.nextLine();
 
 
@@ -21,13 +21,65 @@ public class EditTypeChecker {
                 case "name": {
                     new View().showEntertheNameOfThePerson();
                     String name = scannerString.nextLine();
-                    //model.set(record, setContact(name, model.getSurname(record), model.getNumber(record)));
+                    person = new Person.Builder()
+                            .name(name)
+                            .surname(model.getOnlySurname(index))
+                            .birthDate(model.getBirthDate(index))
+                            .gender(model.getGender(index))
+                            .number(model.getNumberPerson(index))
+                            .created(model.getCreatedPerson(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,person);
+                    new View().showTheRecordUpdated();
                     new View().showTheRecordUpdated();
                     break;
                 }
                 case "surname": {
                     new View().showEnterTheSurnameOfThePerson();
-                    String surname = scannerString.nextLine();
+                    String surName = scannerString.nextLine();
+                    person = new Person.Builder()
+                            .name(model.getOnlyName(index))
+                            .surname(surName)
+                            .birthDate(model.getBirthDate(index))
+                            .gender(model.getGender(index))
+                            .number(model.getNumberPerson(index))
+                            .created(model.getCreatedPerson(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,person);
+                    new View().showTheRecordUpdated();
+                    break;
+                }
+                case "birth": {
+                    new View().showEnterTheSurnameOfThePerson();
+                    String birth = scannerString.nextLine();
+                    person = new Person.Builder()
+                            .name(model.getOnlyName(index))
+                            .surname(model.getOnlySurname(index))
+                            .birthDate(birth)
+                            .gender(model.getGender(index))
+                            .number(model.getNumberPerson(index))
+                            .created(model.getCreatedPerson(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,person);
+                    new View().showTheRecordUpdated();
+                    break;
+                }
+                case "gender": {
+                    new View().showEnterTheSurnameOfThePerson();
+                    String gender = scannerString.nextLine();
+                    person = new Person.Builder()
+                            .name(model.getOnlyName(index))
+                            .surname(model.getOnlySurname(index))
+                            .birthDate(model.getBirthDate(index))
+                            .gender(gender)
+                            .number(model.getNumberPerson(index))
+                            .created(model.getCreatedPerson(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,person);
                     new View().showTheRecordUpdated();
                     break;
                 }
@@ -35,12 +87,77 @@ public class EditTypeChecker {
                     new View().showEnterNumber();
                     String number = scannerString.nextLine();
                     String numberValidated = new PhoneValidator().numberValidator(number);
-                    model.setPerson(index,person.setNumber(numberValidated));
+                    //TODO
+                    person = new Person.Builder()
+                            .name(model.getOnlyName(index))
+                            .surname(model.getOnlySurname(index))
+                            .birthDate(model.getBirthDate(index))
+                            .gender(model.getGender(index))
+                            .number(numberValidated)
+                            .created(model.getCreatedPerson(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,person);
                     new View().showTheRecordUpdated();
                     break;
                 }
             }
         }
 
+        if(model.data.get(index) instanceof Organization) {
+            Organization organization = (Organization) model.data.get(index);
+            new View().showSelectAFieldOrganization();
+            String field = scannerString.nextLine();
+
+
+            switch (field) {
+                case "name": {
+                    new View().showEnterTheOrganizationName();
+                    String organizationName = scannerString.nextLine();
+                    organization = new Organization.Builder()
+                            .organizationName(organizationName)
+                            .address(model.getAddress(index))
+                            .number(model.getNumberPerson(index))
+                            .created(model.getCreatedPerson(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,organization);
+                    new View().showTheRecordUpdated();
+                    new View().showTheRecordUpdated();
+                    break;
+                }
+                case "address": {
+                    new View().showEnterTheAddress();
+                    String address = scannerString.nextLine();
+                    organization = new Organization.Builder()
+                            .organizationName(model.getOrganizationName(index))
+                            .address(address)
+                            .number(model.getNumberOrgnization(index))
+                            .created(model.getCreatedOrganization(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,organization);
+                    new View().showTheRecordUpdated();
+                    break;
+                }
+                case "number": {
+                    new View().showEnterNumber();
+                    String number = scannerString.nextLine();
+                    String numberValidated = new PhoneValidator().numberValidator(number);
+                    //TODO
+                    organization = new Organization.Builder()
+                            .organizationName(model.getOrganizationName(index))
+                            .address(model.getAddress(index))
+                            .number(numberValidated)
+                            .created(model.getCreatedOrganization(index))
+                            .lastEdit(LocalDateTime.now())
+                            .build();
+                    model.set(index,organization);
+                    new View().showTheRecordUpdated();
+                    break;
+                }
+            }
+
+        }
     }
 }

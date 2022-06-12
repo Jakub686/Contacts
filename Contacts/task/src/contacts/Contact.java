@@ -14,18 +14,6 @@ public class Contact {
         this.lastEdit = builder.lastEdit;
     }
 
-    public Person setNumber(String number) {
-        this.number = number;
-        return null;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public void setLastEdit(LocalDateTime lastEdit) {
-        this.lastEdit = lastEdit;
-    }
 
     public String getNumber() {
         return number;

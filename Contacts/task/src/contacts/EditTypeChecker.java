@@ -23,10 +23,10 @@ public class EditTypeChecker {
                     String name = scannerString.nextLine();
                     person = new Person.Builder()
                             .name(name)
-                            .surname(model.getOnlySurname(index))
+                            .surname(model.getPersonSurname(index))
                             .birthDate(model.getBirthDate(index))
                             .gender(model.getGender(index))
-                            .number(model.getNumberPerson(index))
+                            .number(model.getPersonNumber(index))
                             .created(model.getCreatedPerson(index))
                             .lastEdit(LocalDateTime.now())
                             .build();
@@ -43,7 +43,7 @@ public class EditTypeChecker {
                             .surname(surName)
                             .birthDate(model.getBirthDate(index))
                             .gender(model.getGender(index))
-                            .number(model.getNumberPerson(index))
+                            .number(model.getPersonNumber(index))
                             .created(model.getCreatedPerson(index))
                             .lastEdit(LocalDateTime.now())
                             .build();
@@ -56,10 +56,10 @@ public class EditTypeChecker {
                     String birth = scannerString.nextLine();
                     person = new Person.Builder()
                             .name(model.getOnlyName(index))
-                            .surname(model.getOnlySurname(index))
+                            .surname(model.getPersonSurname(index))
                             .birthDate(birth)
                             .gender(model.getGender(index))
-                            .number(model.getNumberPerson(index))
+                            .number(model.getPersonNumber(index))
                             .created(model.getCreatedPerson(index))
                             .lastEdit(LocalDateTime.now())
                             .build();
@@ -72,10 +72,10 @@ public class EditTypeChecker {
                     String gender = scannerString.nextLine();
                     person = new Person.Builder()
                             .name(model.getOnlyName(index))
-                            .surname(model.getOnlySurname(index))
+                            .surname(model.getPersonSurname(index))
                             .birthDate(model.getBirthDate(index))
                             .gender(gender)
-                            .number(model.getNumberPerson(index))
+                            .number(model.getPersonNumber(index))
                             .created(model.getCreatedPerson(index))
                             .lastEdit(LocalDateTime.now())
                             .build();
@@ -90,7 +90,7 @@ public class EditTypeChecker {
                     //TODO
                     person = new Person.Builder()
                             .name(model.getOnlyName(index))
-                            .surname(model.getOnlySurname(index))
+                            .surname(model.getPersonSurname(index))
                             .birthDate(model.getBirthDate(index))
                             .gender(model.getGender(index))
                             .number(numberValidated)
@@ -117,7 +117,7 @@ public class EditTypeChecker {
                     organization = new Organization.Builder()
                             .organizationName(organizationName)
                             .address(model.getAddress(index))
-                            .number(model.getNumberPerson(index))
+                            .number(model.getPersonNumber(index))
                             .created(model.getCreatedPerson(index))
                             .lastEdit(LocalDateTime.now())
                             .build();
@@ -132,7 +132,7 @@ public class EditTypeChecker {
                     organization = new Organization.Builder()
                             .organizationName(model.getOrganizationName(index))
                             .address(address)
-                            .number(model.getNumberOrgnization(index))
+                            .number(model.getOrgnizationNumber(index))
                             .created(model.getCreatedOrganization(index))
                             .lastEdit(LocalDateTime.now())
                             .build();

@@ -1,7 +1,5 @@
 package contacts;
 
-import java.awt.print.Book;
-
 public class View {
     public void showEntertheNameOfThePerson() {
         System.out.println("Enter the name of the person:");
@@ -43,8 +41,8 @@ public class View {
         System.out.println("A record created!");
     }
 
-    public void showEnterAction() {
-        System.out.println("Enter action (add, remove, edit, count, info, exit):");
+    public void showMenuEnterAction() {
+        System.out.println("[menu] Enter action (add, list, search, count, exit):");
     }
 
     public void showAPhoneBookWithASingleRecordCreated() {
@@ -66,6 +64,7 @@ public class View {
     public void showSelectAFieldPerson() {
         System.out.println("Select a field (name, surname, birth, gender, number):");
     }
+
     public void showSelectAFieldOrganization() {
         System.out.println("Select a field (organization name, address, number):");
     }
@@ -83,16 +82,23 @@ public class View {
     }
 
     public void showList(Model model) {
-        for (int i = 0; i < model.data.size(); i++) {
-            System.out.println(i + 1 + ". " + model.getOnlyName(i));
+        for (int index = 0; index < model.data.size(); index++) {
+
+            if (model.data.get(index) instanceof Person) {
+                System.out.println(index + 1 + ". " + model.getPersonName(index) + " " + model.getPersonSurname(index));
+            }
+            if (model.data.get(index) instanceof Organization) {
+                System.out.println(index + 1 + ". " + model.getOrganizationName(index));
+            }
         }
     }
+
     public void showContact(Model model, int index) {
-        if(model.data.get(index) instanceof Person) {
+        if (model.data.get(index) instanceof Person) {
 
             System.out.println(model.getContactInfo(index));
         }
-        if(model.data.get(index) instanceof Organization) {
+        if (model.data.get(index) instanceof Organization) {
 
             System.out.println(model.getContactInfo(index));
         }

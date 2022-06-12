@@ -9,37 +9,26 @@ public class Controller {
         boolean endCondition = true;
 
         while (endCondition) {
-            endCondition = actions(model, endCondition);
+            endCondition = menuActions(model, endCondition);
         }
     }
 
-    private boolean actions(Model model, boolean endCondition) {
+    private boolean menuActions(Model model, boolean endCondition) {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        new View().showEnterAction();
+        new View().showMenuEnterAction();
         String action = scanner.nextLine();
         switch (action) {
             case "add": {
                 add(model);
                 break;
             }
-            case "remove": {
-                if (model.data.size() == 0) {
-                    new View().showNoRecordsToRemove();
-                } else {
-                    new View().showList(model);
-                    new View().showSelectARecord();
-                    int index = scanner.nextInt();
-                    remove(index, model);
-                }
+            case "list": {
+                list(model);
                 break;
             }
-            case "edit": {
-                if (model.data.size() == 0) {
-                    new View().showNoRecordsToEdit();
-                } else {
-                    edit(model);
-                }
+            case "search": {
+                list(model);
                 break;
             }
             case "count": {
@@ -106,13 +95,10 @@ public class Controller {
 
     public void edit(Model model) {
         Scanner scanner = new Scanner(System.in);
-
         new View().showList(model);
         new View().showSelectARecord();
         int record = scanner.nextInt() - 1;
         new EditTypeChecker().editContact(model, record);
-
-
     }
 
     public void info(Model model) {
@@ -121,6 +107,11 @@ public class Controller {
         new View().showEnterIndexToShowInfo();
         int index = scanner.nextInt() - 1;
         new View().showContact(model, index);
+    }
+
+    public void list(Model model) {
+        Scanner scanner = new Scanner(System.in);
+        new View().showList(model);
     }
 
     private Person setPerson(String name, String surname, String birthDate, String gender, String number, LocalDateTime created, LocalDateTime lastEdit) {
@@ -149,7 +140,5 @@ public class Controller {
         model.remove(index - 1);
         new View().showTheRecordRemoved();
     }
-
-
 }
 

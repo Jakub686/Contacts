@@ -7,10 +7,6 @@ public class Model {
 
     LinkedList<Contact> data = new LinkedList<>();
 
-    public LinkedList<Contact> getData() {
-        return data;
-    }
-
     public void add(Contact contact) {
         data.add(contact);
     }
@@ -19,16 +15,6 @@ public class Model {
         data.set(index,contact);
     }
 
-    public void setPerson(int index, Person person) {
-        data.set(index, person);
-    }
-    public void setOrganization(int index, Organization organization) {
-        data.set(index, organization);
-    }
-
-    public Contact get(int index) {
-        return data.get(index);
-    }
 
     public String getOnlyName(int index) {
         String result = "";
@@ -42,7 +28,13 @@ public class Model {
         }
         return result;
     }
-    public String getOnlySurname(int index) {
+
+    public String getPersonName(int index) {
+        Person person = (Person) data.get(index);
+        return person.showSurname();
+    }
+
+    public String getPersonSurname(int index) {
             Person person = (Person) data.get(index);
         return person.showSurname();
     }
@@ -58,11 +50,11 @@ public class Model {
         Person person = (Person) data.get(index);
         return person.showCreated();
     }
-    public String getNumberPerson(int index) {
+    public String getPersonNumber(int index) {
         Person person = (Person) data.get(index);
         return person.showNumber();
     }
-    public String getNumberOrgnization(int index) {
+    public String getOrgnizationNumber(int index) {
         Organization organization = (Organization) data.get(index);
         return organization.showNumber();
     }
@@ -78,7 +70,6 @@ public class Model {
         Organization organization = (Organization) data.get(index);
         return organization.showAddress();
     }
-
     public String getContactInfo(int index) {
         String result = "";
         if(data.get(index) instanceof Person){

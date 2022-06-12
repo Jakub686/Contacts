@@ -11,22 +11,6 @@ public class Person extends Contact {
     private String gender;
 
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public Person(Builder builder) {
         super(builder);
         this.name = builder.name;

@@ -1,6 +1,12 @@
 package contacts;
 
+import java.util.LinkedList;
+
 public class View {
+    public void showEnterSearchQuery() {
+        System.out.println("Enter search query: ");
+    }
+
     public void showEntertheNameOfThePerson() {
         System.out.println("Enter the name of the person:");
     }
@@ -90,6 +96,13 @@ public class View {
             if (model.data.get(index) instanceof Organization) {
                 System.out.println(index + 1 + ". " + model.getOrganizationName(index));
             }
+        }
+    }
+    public void showQueryList(LinkedList foundQuerys) {
+        for (int index = 0; index < foundQuerys.size(); index++) {
+
+                System.out.println(index + 1 + ". " + foundQuerys.get(index));
+
         }
     }
 

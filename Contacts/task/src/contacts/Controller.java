@@ -28,7 +28,7 @@ public class Controller {
                 break;
             }
             case "search": {
-                list(model);
+                new SearchQuery().search(model);
                 break;
             }
             case "count": {
@@ -111,6 +111,12 @@ public class Controller {
 
     public void list(Model model) {
         Scanner scanner = new Scanner(System.in);
+        new View().showList(model);
+    }
+    public void serach(Model model) {
+        Scanner scanner = new Scanner(System.in);
+        new View().showEnterSearchQuery();
+
         new View().showList(model);
     }
 

@@ -9,11 +9,11 @@ public class Controller {
         boolean endCondition = true;
 
         while (endCondition) {
-            endCondition = menuActions(model, endCondition);
+            endCondition = mainMenu(model, endCondition);
         }
     }
 
-    private boolean menuActions(Model model, boolean endCondition) {
+    private boolean mainMenu(Model model, boolean endCondition) {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         new View().showMenuEnterAction();
@@ -25,20 +25,22 @@ public class Controller {
             }
             case "list": {
                 list(model);
+                //TODO
+                info(model);
                 break;
             }
             case "search": {
-                new SearchQuery().search(model);
+                new MenuSearchQuery().search(model);
                 break;
             }
             case "count": {
                 new View().showAmount(model);
                 break;
             }
-            case "info": {
-                info(model);
-                break;
-            }
+//            case "info": {
+//                info(model);
+//                break;
+//            }
             case "exit": { ///
                 endCondition = false;
                 break;
@@ -93,18 +95,12 @@ public class Controller {
         new View().showTheRecordAdded();
     }
 
-    public void edit(Model model) {
-        Scanner scanner = new Scanner(System.in);
-        new View().showList(model);
-        new View().showSelectARecord();
-        int record = scanner.nextInt() - 1;
-        new EditTypeChecker().editContact(model, record);
-    }
+
 
     public void info(Model model) {
         Scanner scanner = new Scanner(System.in);
-        new View().showList(model);
-        new View().showEnterIndexToShowInfo();
+        //new View().showList(model);
+        //new View().showEnterIndexToShowInfo();
         int index = scanner.nextInt() - 1;
         new View().showContact(model, index);
     }
@@ -112,6 +108,7 @@ public class Controller {
     public void list(Model model) {
         Scanner scanner = new Scanner(System.in);
         new View().showList(model);
+
     }
     public void serach(Model model) {
         Scanner scanner = new Scanner(System.in);
@@ -142,9 +139,6 @@ public class Controller {
                 .build();
     }
 
-    public void remove(int index, Model model) {
-        model.remove(index - 1);
-        new View().showTheRecordRemoved();
-    }
+
 }
 

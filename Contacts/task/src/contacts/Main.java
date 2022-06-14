@@ -5,4 +5,3 @@ public class Main {
         new Controller().run(new Model());
     }
 }
-//TODO

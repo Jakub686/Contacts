@@ -52,7 +52,7 @@ public class EditTypeChecker {
                     break;
                 }
                 case "birth": {
-                    new View().showEnterTheSurnameOfThePerson();
+                    new View().showEnterTheBirthDate();
                     String birth = scannerString.nextLine();
                     person = new Person.Builder()
                             .name(model.getOnlyName(index))

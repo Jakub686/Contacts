@@ -7,6 +7,13 @@ public class View {
         System.out.println("Enter search query: ");
     }
 
+    public void showFoundResults(LinkedList foundQuerys) {
+        System.out.println("Found " + foundQuerys.size() + " results: ");
+    }
+    public void showSearchMenu() {
+        System.out.println("[search] Enter action ([number], back, again): ");
+    }
+
     public void showEntertheNameOfThePerson() {
         System.out.println("Enter the name of the person:");
     }
@@ -55,6 +62,15 @@ public class View {
         System.out.println("A Phone Book with a single record created!");
     }
 
+    public void showRecordEnterAction() {
+        System.out.println("[record] Enter action (edit, delete, menu): ");
+    }
+
+    public void showSelectAFieldToEdit() {
+        System.out.println("Select a field (name, address, number): ");
+    }
+
+
     public void showSelectARecord() {
         System.out.println("Select a record:");
     }
@@ -98,10 +114,11 @@ public class View {
             }
         }
     }
+
     public void showQueryList(LinkedList foundQuerys) {
         for (int index = 0; index < foundQuerys.size(); index++) {
 
-                System.out.println(index + 1 + ". " + foundQuerys.get(index));
+            System.out.println(index + 1 + ". " + foundQuerys.get(index));
 
         }
     }

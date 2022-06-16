@@ -24,9 +24,9 @@ public class Controller {
                 break;
             }
             case "list": {
-                list(model);
+                MenuList.list(model);
                 //TODO
-                info(model);
+
                 break;
             }
             case "search": {
@@ -97,19 +97,9 @@ public class Controller {
 
 
 
-    public void info(Model model) {
-        Scanner scanner = new Scanner(System.in);
-        //new View().showList(model);
-        //new View().showEnterIndexToShowInfo();
-        int index = scanner.nextInt() - 1;
-        new View().showContact(model, index);
-    }
 
-    public void list(Model model) {
-        Scanner scanner = new Scanner(System.in);
-        new View().showList(model);
 
-    }
+
     public void serach(Model model) {
         Scanner scanner = new Scanner(System.in);
         new View().showEnterSearchQuery();

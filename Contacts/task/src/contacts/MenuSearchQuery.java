@@ -2,6 +2,7 @@ package contacts;
 
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class MenuSearchQuery {
@@ -13,8 +14,10 @@ public class MenuSearchQuery {
             String inputSearch = scanner.nextLine();
             LinkedList<String> foundQueries = new LinkedList<>();
 
+
+            //searching independent of lower or upper case
             for (int i = 0; i < model.data.size(); i++) {
-                if (model.getOnlyNameForSearching(i).contains(inputSearch)) {
+                if (model.getOnlyNameForSearching(i).toLowerCase(Locale.ROOT).contains(inputSearch.toLowerCase())) {
                     foundQueries.add(model.getOnlyNameForSearching(i));
                 }
             }
@@ -36,9 +39,6 @@ public class MenuSearchQuery {
             if(inputAction.equals("back")){
                 endCondition = false;
             }
-
-
-
 
         }while (endCondition);
     }

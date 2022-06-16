@@ -70,6 +70,10 @@ public class View {
         System.out.println("Select a field (name, address, number): ");
     }
 
+    public void showMenuList() {
+        System.out.println("[list] Enter action ([number], back): ");
+    }
+
 
     public void showSelectARecord() {
         System.out.println("Select a record:");
@@ -159,5 +163,8 @@ public class View {
         }
 
     }
+
+
+
 
 }

@@ -28,7 +28,20 @@ public class Model {
         return result;
     }
 
-    public String getOnlyNameForSearching(int index) {
+    public String getContactForSearching(int index) {
+        String result = "";
+        if(data.get(index) instanceof Person){
+            Person person = (Person) data.get(index);
+            result = person.showInfo();
+        }
+        if(data.get(index) instanceof Organization){
+            Organization organization = (Organization) data.get(index);
+            result = organization.showInfo();
+        }
+        return result;
+    }
+
+    public String resultOfSearching(int index) {
         String result = "";
         if(data.get(index) instanceof Person){
             Person person = (Person) data.get(index);
@@ -40,6 +53,7 @@ public class Model {
         }
         return result;
     }
+
 
     public String getPersonName(int index) {
         Person person = (Person) data.get(index);

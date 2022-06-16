@@ -1,6 +1,5 @@
 package contacts;
 
-import java.awt.*;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -17,8 +16,8 @@ public class MenuSearchQuery {
 
             //searching independent of lower or upper case
             for (int i = 0; i < model.data.size(); i++) {
-                if (model.getOnlyNameForSearching(i).toLowerCase(Locale.ROOT).contains(inputSearch.toLowerCase())) {
-                    foundQueries.add(model.getOnlyNameForSearching(i));
+                if (model.getContactForSearching(i).toLowerCase(Locale.ROOT).contains(inputSearch.toLowerCase())) {
+                    foundQueries.add(model.resultOfSearching(i));
                 }
             }
             new View().showFoundResults(foundQueries);

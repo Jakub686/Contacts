@@ -21,18 +21,21 @@ public class Organization extends Contact {
     public String showOrganizationName() {
         return this.organizationName;
     }
+
     public String showAddress() {
         return this.address;
     }
+
     public String showNumber() {
         return getNumber();
     }
+
     public LocalDateTime showCreated() {
         return getCreated();
     }
 
     public String showInfo() {
-        return "Organization name: " + this.organizationName + "\nAddress: " + this.address + "\nNumber: " + getNumber()+ "\nTime created: " + getCreated()+ "\nTime last edit: " + getLastEdit();
+        return "Organization name: " + this.organizationName + "\nAddress: " + this.address + "\nNumber: " + getNumber() + "\nTime created: " + getCreated() + "\nTime last edit: " + getLastEdit();
     }
 
 

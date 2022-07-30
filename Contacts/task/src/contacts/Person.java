@@ -28,24 +28,29 @@ public class Person extends Contact {
     public String showName() {
         return this.name;
     }
+
     public String showSurname() {
         return this.surname;
     }
+
     public String showBirthDate() {
         return this.birthDate;
     }
+
     public String showGender() {
         return this.gender;
     }
+
     public LocalDateTime showCreated() {
         return getCreated();
     }
+
     public String showNumber() {
         return getNumber();
     }
 
     public String showInfo() {
-        return "Name: " + this.name + "\nSurname: " + this.surname + "\nBirth date: " + this.birthDate + "\nGender: " + this.gender + "\nNumber: " + getNumber()+ "\nTime created: " + getCreated()+ "\nTime last edit: " + getLastEdit();
+        return "Name: " + this.name + "\nSurname: " + this.surname + "\nBirth date: " + this.birthDate + "\nGender: " + this.gender + "\nNumber: " + getNumber() + "\nTime created: " + getCreated() + "\nTime last edit: " + getLastEdit();
     }
 
     public static Builder builder() {

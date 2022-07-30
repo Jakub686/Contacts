@@ -25,7 +25,6 @@ public class Controller {
             }
             case "list": {
                 MenuList.list(model);
-                //TODO
 
                 break;
             }
@@ -37,10 +36,6 @@ public class Controller {
                 new View().showAmount(model);
                 break;
             }
-//            case "info": {
-//                info(model);
-//                break;
-//            }
             case "exit": { ///
                 endCondition = false;
                 break;
@@ -81,12 +76,16 @@ public class Controller {
             model.add(person);
         }
         if (input.equals("organization")) {
+
             new View().showEnterTheOrganizationName();
             String organizationName = scanner.nextLine();
+
             new View().showEnterTheAddress();
             String address = scanner.nextLine();
+
             new View().showEnterTheNumber();
             String number = scanner.nextLine();
+
             String numberValidated = new PhoneValidator().numberValidator(number);
             Organization organization = setOrganization(numberValidated, organizationName, address, LocalDateTime.now(), LocalDateTime.now());
             model.add(organization);
@@ -94,11 +93,6 @@ public class Controller {
 
         new View().showTheRecordAdded();
     }
-
-
-
-
-
 
     public void serach(Model model) {
         Scanner scanner = new Scanner(System.in);

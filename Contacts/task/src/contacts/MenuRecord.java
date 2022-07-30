@@ -17,7 +17,6 @@ public class MenuRecord {
 
             switch (action) {
                 case "edit": {
-                    //new View().showSelectAFieldToEdit();
                     edit(model,index);
                     break;
                 }

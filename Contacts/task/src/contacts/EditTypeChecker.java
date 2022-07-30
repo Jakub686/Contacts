@@ -5,17 +5,16 @@ import java.util.Scanner;
 
 public class EditTypeChecker {
 
-
     Scanner scannerString = new Scanner(System.in);
-;
 
     public void editContact(Model model, int index){
 
         if(model.data.get(index) instanceof Person) {
+
             Person person = (Person) model.data.get(index);
+
             new View().showSelectAFieldPerson();
             String field = scannerString.nextLine();
-
 
             switch (field) {
                 case "name": {
@@ -31,6 +30,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,person);
+
                     new View().showTheRecordUpdated();
                     new View().showTheRecordUpdated();
                     break;
@@ -48,6 +48,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,person);
+
                     new View().showTheRecordUpdated();
                     break;
                 }
@@ -64,6 +65,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,person);
+
                     new View().showTheRecordUpdated();
                     break;
                 }
@@ -80,6 +82,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,person);
+
                     new View().showTheRecordUpdated();
                     break;
                 }
@@ -98,6 +101,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,person);
+
                     new View().showTheRecordUpdated();
                     break;
                 }
@@ -122,6 +126,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,organization);
+
                     new View().showTheRecordUpdated();
                     new View().showTheRecordUpdated();
                     break;
@@ -137,6 +142,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,organization);
+
                     new View().showTheRecordUpdated();
                     break;
                 }
@@ -144,7 +150,6 @@ public class EditTypeChecker {
                     new View().showEnterNumber();
                     String number = scannerString.nextLine();
                     String numberValidated = new PhoneValidator().numberValidator(number);
-                    //TODO
                     organization = new Organization.Builder()
                             .organizationName(model.getOrganizationName(index))
                             .address(model.getAddress(index))
@@ -153,6 +158,7 @@ public class EditTypeChecker {
                             .lastEdit(LocalDateTime.now())
                             .build();
                     model.set(index,organization);
+
                     new View().showTheRecordUpdated();
                     break;
                 }

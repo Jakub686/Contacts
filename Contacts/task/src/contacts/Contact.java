@@ -14,7 +14,6 @@ public class Contact {
         this.lastEdit = builder.lastEdit;
     }
 
-
     public String getNumber() {
         return number;
     }
@@ -47,11 +46,9 @@ public class Contact {
 
     public abstract static class Builder<T extends Builder<T>> {
 
-
         private String number;
         private LocalDateTime created;
         private LocalDateTime lastEdit;
-
 
         public abstract T getThis();
 
@@ -70,6 +67,7 @@ public class Contact {
             this.lastEdit = lastEdit;
             return this.getThis();
         }
+
         public Contact build() {
             return new Contact(this);
         }

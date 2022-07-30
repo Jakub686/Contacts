@@ -13,20 +13,22 @@ public class MenuSearchQuery {
             String inputSearch = scanner.nextLine();
             LinkedList<String> foundQueries = new LinkedList<>();
 
-
             //searching independent of lower or upper case
             for (int i = 0; i < model.data.size(); i++) {
                 if (model.getContactForSearching(i).toLowerCase(Locale.ROOT).contains(inputSearch.toLowerCase())) {
                     foundQueries.add(model.resultOfSearching(i));
                 }
             }
+
             new View().showFoundResults(foundQueries);
             new View().showQueryList(foundQueries);
             System.out.println();
             new View().showSearchMenu();
 
             String inputAction = scanner.nextLine();
-            boolean numberCheck = (inputAction.matches("^[0-9]{1}$")|inputAction.matches("^[0-9]{2}$")|inputAction.matches("^[0-9]{3}$"));
+            boolean numberCheck = (inputAction.matches("^[0-9]{1}$")
+                    |inputAction.matches("^[0-9]{2}$")
+                    |inputAction.matches("^[0-9]{3}$"));
 
             if (numberCheck==true){
                 new MenuRecord().infoSearch(model,inputAction);

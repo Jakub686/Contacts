@@ -10,6 +10,7 @@ public class View {
     public void showFoundResults(LinkedList foundQuerys) {
         System.out.println("Found " + foundQuerys.size() + " results: ");
     }
+
     public void showSearchMenu() {
         System.out.println("[search] Enter action ([number], back, again): ");
     }
@@ -163,8 +164,6 @@ public class View {
         }
 
     }
-
-
 
 
 }
